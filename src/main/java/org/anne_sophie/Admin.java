@@ -9,18 +9,16 @@ import java.util.List;
  * @author Anne-Sophie Desaulniers
  */
 class Admin implements Loginable {
-    private static String username = null;
-    private static String password = null;
+    private static final String username = "admin";
+    private static final String password = "admin123";
     private static List<Meal> menuMeals;
     private static List<Dessert> menuDesserts;
     private double totalSales;
 
-    public Admin(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public Admin() {
         this.menuMeals = new ArrayList<>();
         this.menuDesserts = new ArrayList<>();
-        this.totalSales = 0;
+        this.totalSales = totalSales;
     }
 
     /**
@@ -33,9 +31,10 @@ class Admin implements Loginable {
     @Override
     public boolean login(String enteredUsername, String enteredPassword) {
         if (username.equals(enteredUsername) && password.equals(enteredPassword)) {
-            System.out.println("Admin logged in successfully!");
+            System.out.println("Admin logged in successfully! Welcome admin!");
+            return true;
         } else {
-            System.out.println("Admin login failed");
+            System.out.println("Admin login failed, please try again");
         }
         return false;
     }

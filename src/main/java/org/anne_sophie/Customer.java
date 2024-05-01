@@ -13,9 +13,7 @@ public class Customer implements Loginable {
     private static String password;
     private static List<Food> order = new ArrayList<>();
 
-    public Customer(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public Customer() {
         this.order = new ArrayList<>();
     }
 
@@ -30,8 +28,9 @@ public class Customer implements Loginable {
     public boolean login(String enteredUsername, String enteredPassword) {
         if (username.equals(enteredUsername) && password.equals(enteredPassword)) {
             System.out.println("Customer login successful");
+            return true;
         } else {
-            System.out.println("Customer login failed");
+            System.out.println("Customer login failed, please try again");
         }
         return false;
     }
