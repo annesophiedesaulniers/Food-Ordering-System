@@ -9,7 +9,8 @@ public class Main {
         Dessert chocolateCake = new Dessert("Chocolate cake", 7.25, new String[]{"Flour", "Eggs", "Sugar", "Cocoa"});
         Dessert tiramisu = new Dessert("Tiramisu", 6.99, new String[]{"Cream", "Sugar", "Coffee"});
         Admin admin = new Admin();
-        Customer customer = new Customer();
+        Customer customer = new Customer("customer", "customer123");
+        System.out.println("Welcome to Anne's Lounge!");
         System.out.println("Please log into the right account");
         System.out.println("Enter:");
         System.out.println("1. for admin login");
@@ -85,22 +86,26 @@ public class Main {
                         break;
                 }
             }
-        }
+        } else System.out.println("Admin log in failed. Please try again");
         if (loginChoice == 2 && customer.login(enteredUsername, enteredPassword)) {
             boolean customerLoggedIn = true;
             while (customerLoggedIn) {
                 System.out.println("Enter what you would like to do: ");
-                System.out.println("1. Add a meal to your cart");
-                System.out.println("2. Add a dessert to your cart");
-                System.out.println("3. Remove a meal from your cart");
-                System.out.println("4. Remove a dessert from your cart");
-                System.out.println("5. Display your order and price");
-                System.out.println("6. Pay for your order");
-                System.out.println("7. Exit");
+                System.out.println("1. Display menu");
+                System.out.println("2. Add a meal to your cart");
+                System.out.println("3. Add a dessert to your cart");
+                System.out.println("4. Remove a meal from your cart");
+                System.out.println("5. Remove a dessert from your cart");
+                System.out.println("6. Display ingredients of a food item");
+                System.out.println("7. Display your order and price");
+                System.out.println("8. Pay for your order");
+                System.out.println("9. Exit");
                 Scanner scanner9 = new Scanner(System.in);
                 int customerChoice = scanner9.nextInt();
                 switch (customerChoice) {
                     case 1:
+
+                    case 2:
                         System.out.println("What meal would you like to add to your cart (no spaces): ");
                         Scanner scanner10 = new Scanner(System.in);
                         String mealToAdd = scanner10.next();
@@ -110,7 +115,7 @@ public class Main {
                             Customer.addMealToCart(rigatoniBolognese);
                         } else System.out.println("Meal chosen does not exist, please try again");
                         break;
-                    case 2:
+                    case 3:
                         System.out.println("What dessert would you like to add to your cart (no spaces): ");
                         Scanner scanner11 = new Scanner(System.in);
                         String dessertToAdd = scanner11.next();
@@ -120,7 +125,7 @@ public class Main {
                             Customer.addDessertToCart(tiramisu);
                         } else System.out.println("Dessert chosen does not exist, please try again");
                         break;
-                    case 3:
+                    case 4:
                         System.out.println("What meal would you like to remove from your cart (no spaces): ");
                         Scanner scanner12 = new Scanner(System.in);
                         String mealToRemove = scanner12.next();
@@ -131,7 +136,7 @@ public class Main {
 
                         } else System.out.println("Meal chosen does not exist, please try again");
                         break;
-                    case 4:
+                    case 5:
                         System.out.println("What dessert would you like to remove from your cart (no spaces): ");
                         Scanner scanner13 = new Scanner(System.in);
                         String dessertToRemove = scanner13.next();
@@ -141,14 +146,21 @@ public class Main {
                             Customer.removeDessertFromCart(tiramisu);
                         } else System.out.println("Dessert chosen does not exist, please try again");
                         break;
-                    case 5:
+                    case 6:
+//                        System.out.println("What food item would you like to see the ingredients: ");
+//                        Scanner scanner14 = new Scanner(System.in);
+//                        String foodToSeeIngredients = scanner14.next();
+//                        if (foodToSeeIngredients.equalsIgnoreCase("spaguettiAndMeatballs")) {
+//                            Food.displayIngredients();
+//                        }
+                    case 7:
                         Customer.displayOrder();
                         break;
 
-                    case 6:
+                    case 8:
                         Customer.pay();
                         break;
-                    case 7:
+                    case 9:
                         System.out.println("Exiting. Thank you!");
                         customerLoggedIn = false;
                         scanner9.close();

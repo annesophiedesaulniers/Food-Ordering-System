@@ -14,6 +14,7 @@ class Admin implements Loginable {
     private static List<Meal> menuMeals;
     private static List<Dessert> menuDesserts;
     private double totalSales;
+    private static final String SALES_FILES = "C://Users//2372588//Desktop";
 
     public Admin() {
         this.menuMeals = new ArrayList<>();
@@ -81,9 +82,6 @@ class Admin implements Loginable {
         }
     }
 
-    public static void recordSale() {
-
-    }
 
     public static void displaySalesToFile() {
 

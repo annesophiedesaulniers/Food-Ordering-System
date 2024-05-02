@@ -13,7 +13,9 @@ public class Customer implements Loginable {
     private static String password;
     private static List<Food> order = new ArrayList<>();
 
-    public Customer() {
+    public Customer(String username, String password) {
+        this.username = username;
+        this.password = password;
         this.order = new ArrayList<>();
     }
 
