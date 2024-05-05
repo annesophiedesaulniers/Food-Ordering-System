@@ -113,7 +113,7 @@ public class Customer implements Loginable {
 
     /**
      * remove a meal from their cart
-     * @param meal the meal to remove from their cart
+     * @param mealName the name of the meal to remove from the cart
      */
     public static void removeMealFromCart(String mealName) {
         boolean doesMealExist = false;

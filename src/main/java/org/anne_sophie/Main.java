@@ -7,9 +7,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Admin admin = new Admin();
         Customer customer = new Customer();
-        boolean isAdminLoginSuccessful = false;
-        boolean isCustomerLoginSuccessful = false;
-        int loginChoice = 0;
+        boolean isAdminLoginSuccessful;
+        boolean isCustomerLoginSuccessful;
+        int loginChoice;
         while (true) {
             System.out.println("Welcome to Anne's Lounge!");
             System.out.println("Please log into the right account");

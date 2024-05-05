@@ -108,6 +108,7 @@ class Admin implements Loginable {
     /**
      * remove a dessert from the menu
      *
+     * @param name the name of the dessert ot remove from the menu
      */
     public static void removeDessertFromMenu(String name) {
         Iterator<Dessert> iterator = menuDesserts.iterator();

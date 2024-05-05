@@ -101,9 +101,6 @@ class Dessert extends Food {
         return super.getPrice();
     }
 
-    public void setIngredients(String[] ingredients) {
-        this.ingredients = ingredients;
-    }
 
     @Override
     public String toString() {

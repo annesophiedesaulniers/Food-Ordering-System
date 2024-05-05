@@ -1,7 +1,7 @@
 package org.anne_sophie;
 
 /**
- * login for any user
+ * login for user
  *
  * @author Anne-Sophie Desaulniers
  */
