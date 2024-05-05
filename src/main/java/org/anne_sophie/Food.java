@@ -1,5 +1,7 @@
 package org.anne_sophie;
 
+import java.util.Arrays;
+
 /**
  * food you can get at the restaurant
  *
@@ -22,7 +24,16 @@ public abstract class Food {
      * display the ingredients of the food item
      */
     public abstract void displayIngredients();
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }
+
 
 class Meal extends Food {
 
@@ -30,6 +41,18 @@ class Meal extends Food {
     public Meal(String name, double price, String[] ingredients) {
         super(name, price);
         this.ingredients = ingredients;
+    }
+
+    public String[] getIngredients() {
+        return ingredients;
+    }
+
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                '}';
     }
 
     /**
@@ -51,6 +74,13 @@ class Meal extends Food {
             System.out.println("- " + ingredient);
         }
     }
+
+    public String getName() {
+        return super.getName();
+    }
+    public double getPrice() {
+        return super.getPrice();
+    }
 }
 
 class Dessert extends Food {
@@ -59,6 +89,28 @@ class Dessert extends Food {
     public Dessert(String name, double price, String[] ingredients) {
         super(name, price);
         this.ingredients = ingredients;
+    }
+
+    public String[] getIngredients() {
+        return ingredients;
+    }
+    public String getName() {
+        return super.getName();
+    }
+    public double getPrice() {
+        return super.getPrice();
+    }
+
+    public void setIngredients(String[] ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    @Override
+    public String toString() {
+        return "Dessert{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                '}';
     }
 
     /**
