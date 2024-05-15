@@ -25,7 +25,7 @@ public class Customer implements Loginable {
      *
      * @param enteredUsername the entered username
      * @param enteredPassword the entered password
-     * @return if you logged in or not
+     * @return if you successfully logged in or not
      */
     @Override
     public boolean login(String enteredUsername, String enteredPassword) {
@@ -43,16 +43,23 @@ public class Customer implements Loginable {
             return false;
         }
     }
+
+    /**
+     * creates an account if you are a new customer
+     *
+     * @param username your desired username
+     * @param password your desired password
+     * @return if the account was created successfully or not
+     */
     public static boolean createAccount(String username, String password) {
         try {
             if (accounts.containsKey(username)) {
                 System.out.println("Username '" + username + "' already exists. Please choose a different username.");
-                return false; // Account creation failed
+                return false;
             } else {
-                // Add the new username and password to the map
                 accounts.put(username, password);
                 System.out.println("Account created successfully. Welcome, " + username + "!");
-                return true; // Account creation successful
+                return true;
             }
         } catch (Exception e) {
             System.out.println("An error occurred during account creation: " + e.getMessage());
@@ -60,6 +67,9 @@ public class Customer implements Loginable {
         }
     }
 
+    /**
+     * displays the menu for the customer
+     */
     public static void displayMenu() {
         System.out.println("Menu : ");
         System.out.println("Meals: ");
@@ -73,8 +83,9 @@ public class Customer implements Loginable {
     }
 
     /**
-     * add a meal to their cart
-     * @param mealName name of the meal to add
+     * adds a meal to their cart
+     *
+     * @param mealName the name of the meal to add
      */
     public static void addMealToCart(String mealName) {
         boolean doesMealExist = false;
@@ -91,9 +102,11 @@ public class Customer implements Loginable {
             System.out.println("Meal '" + mealName + "' does not exist in the menu. Please try again.");
         }
     }
+
     /**
-     * add a dessert to their cart
-     * @param
+     * adds a dessert to their cart
+     *
+     * @param dessertName the name of the dessert to add
      */
     public static void addDessertToCart(String dessertName) {
         boolean doesDessertExist = false;
@@ -112,7 +125,8 @@ public class Customer implements Loginable {
     }
 
     /**
-     * remove a meal from their cart
+     * removes a meal from their cart
+     *
      * @param mealName the name of the meal to remove from the cart
      */
     public static void removeMealFromCart(String mealName) {
@@ -122,7 +136,7 @@ public class Customer implements Loginable {
             if (meal.getName().equalsIgnoreCase(mealName)) {
                 order.remove(meal);
                 doesMealExist = true;
-                break; // Exiting the loop after removing the meal
+                break;
             }
         }
         if (doesMealExist) {
@@ -133,8 +147,9 @@ public class Customer implements Loginable {
     }
 
     /**
-     * remove a dessert from their cart
-     * @param dessert the dessert to remove from their cart
+     * removes a dessert from their cart
+     *
+     * @param dessertName the name of the dessert to remove
      */
     public static void removeDessertFromCart(String dessertName) {
         boolean doesDessertExist = false;
@@ -143,7 +158,7 @@ public class Customer implements Loginable {
             if (dessert.getName().equalsIgnoreCase(dessertName)) {
                 order.remove(dessert);
                 doesDessertExist = true;
-                break; // Exiting the loop after removing the meal
+                break;
             }
         }
         if (doesDessertExist) {
@@ -152,6 +167,13 @@ public class Customer implements Loginable {
             System.out.println("Dessert '" + dessertName + "' not found in the cart.");
         }
     }
+
+    /**
+     * gets the items you can afford based on your budget
+     *
+     * @param amount the budget you have to spend
+     * @return the items you can afford
+     */
     public static List<Food> getAffordableItems(double amount) {
         List<Food> affordableItems = new ArrayList<>();
         List<Meal> menuMeals = Admin.getMenuMeals();
@@ -167,65 +189,79 @@ public class Customer implements Loginable {
             if (dessert.getPrice() <= amount) {
                 affordableItems.add(dessert);
             }
-    }
+        }
         for (Food item : affordableItems) {
             System.out.println(item);
         }
         return affordableItems;
     }
 
+    /**
+     * displays the ingredients of a food item
+     *
+     * @param itemName the name of the food item
+     */
     public static void displayIngredientsOfItem(String itemName) {
         List<Meal> menuMeals = Admin.getMenuMeals();
         List<Dessert> menuDesserts = Admin.getMenuDesserts();
 
-        // Search for the item in the menu meals
         for (Meal meal : menuMeals) {
             if (meal.getName().equalsIgnoreCase(itemName)) {
-                System.out.println("Ingredients for " + itemName + ":");
+                System.out.println("Ingredients for " + itemName + ": ");
                 for (String ingredient : meal.getIngredients()) {
                     System.out.println(ingredient);
                 }
-                return; // Exit the method after printing ingredients
+                return;
             }
         }
 
-        // Search for the item in the menu desserts
         for (Dessert dessert : menuDesserts) {
             if (dessert.getName().equalsIgnoreCase(itemName)) {
-                System.out.println("Ingredients for " + itemName + ":");
+                System.out.println("Ingredients for " + itemName + ": ");
                 for (String ingredient : dessert.getIngredients()) {
                     System.out.println(ingredient);
                 }
-                return; // Exit the method after printing ingredients
+                return;
             }
         }
 
-        // If the item is not found in the menu
         System.out.println("Item '" + itemName + "' not found in the menu.");
     }
+
     /**
-     * display the order with the total price
+     * displays the order with the total price
      */
     public static void displayOrder() {
-        double total = 0;
+        double subtotal = 0;
         System.out.println("Order:");
         for (Food food : order) {
             food.displayInfo();
-            total += food.price;
+            subtotal += food.price;
         }
-        System.out.println("Total Price: $" + total);
+        System.out.println("Subtotal Price: $" + subtotal);
     }
 
     /**
      * payment of their food
      */
-    public static void pay() {
-        double total = 0;
+    public static void pay(double tipPercent) {
+        double subtotal = 0;
         for (Food food : order) {
-            total += food.price;
+            food.displayInfo();
+            subtotal += food.price;
         }
-        System.out.println("Payment of " + total + " $ completed successfully");
+        double taxAmount = 0.15 * subtotal;
+        double total = subtotal + taxAmount;
+        double tipAmount = 0;
+        if (tipPercent > 0) {
+            tipAmount = tipPercent * subtotal / 100;
+            total += tipAmount;
+        }
+        System.out.printf("Subtotal: $%.2f\n", subtotal);
+        System.out.printf("Tax (15%%): $%.2f\n", taxAmount);
+        System.out.printf("Tip: $%.2f\n", tipAmount);
+        System.out.printf("Total: $%.2f\n", total);
+        System.out.printf("Successful payment of $%.2f\n", total);
         System.out.println("Thank you for your purchase! Enjoy!");
     }
 }
-

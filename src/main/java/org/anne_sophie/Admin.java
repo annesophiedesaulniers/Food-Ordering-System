@@ -1,7 +1,5 @@
 package org.anne_sophie;
 
-import java.awt.*;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -38,7 +36,7 @@ class Admin implements Loginable {
      *
      * @param enteredUsername the entered username
      * @param enteredPassword the entered password
-     * @return
+     * @return if the admin logged in successfully or not
      */
     @Override
     public boolean login(String enteredUsername, String enteredPassword) {
@@ -52,8 +50,7 @@ class Admin implements Loginable {
     }
 
     /**
-     * add a meal to the menu
-     *
+     * adds meal to the menu
      */
     public static void addMealToMenu(String name, double price, String[] ingredients) {
         for (Meal meal : menuMeals) {
@@ -69,28 +66,24 @@ class Admin implements Loginable {
     }
 
     /**
-     * remove a meal from the menu
-     *
+     * removes a meal from the menu
      */
     public static void removeMealFromMenu(String name) {
         Iterator<Meal> iterator = menuMeals.iterator();
         while (iterator.hasNext()) {
             Meal meal = iterator.next();
             if (meal.getName().equalsIgnoreCase(name)) {
-                // Remove the meal from the menu
                 iterator.remove();
                 System.out.println("Meal '" + name + "' removed from the menu successfully.");
                 updateMenuFile();
                 return;
             }
         }
-        // If the meal with the specified name is not found
         System.out.println("Meal '" + name + "' not found in the menu, Please try a different meal.");
     }
 
     /**
-     * add a dessert to the menu
-     *
+     * adds a dessert to the menu
      */
     public static void addDessertToMenu(String name, double price, String[] ingredients) {
         for (Dessert dessert : menuDesserts) {
@@ -123,32 +116,10 @@ class Admin implements Loginable {
         }
         System.out.println("Dessert '" + name + "' not found in the menu, Please try a different meal.");
     }
-    public static void displayMenu() {
-        System.out.println("Menu: ");
-        System.out.println("Meals: ");
-        for (Meal meal : menuMeals) {
-            System.out.println(meal.getName() + " $" + meal.getPrice());
-        }
-        System.out.println("Dessert: ");
-        for (Dessert dessert : menuDesserts) {
-            System.out.println(dessert.getName()  + " $" + dessert.getPrice());
-        }
-    }
-    public List<String> getIngredients(String itemName) {
-        for (Meal meal : menuMeals) {
-            if (meal.getName().equalsIgnoreCase(itemName)) {
-                return List.of(meal.getIngredients());
-            }
-        }
-        for (Dessert dessert : menuDesserts) {
-            if (dessert.getName().equalsIgnoreCase(itemName)) {
-                return List.of(dessert.getIngredients());
-            }
-        }
-        System.out.println(itemName + " not found in the menu. Please try again");
-        return null;
-    }
 
+    /**
+     * updates the menu file when admin adds or removes a food item from the menu
+     */
     public static void updateMenuFile() {
         try (FileWriter writer = new FileWriter("menu.txt")) {
             writer.write("Menu:\n");

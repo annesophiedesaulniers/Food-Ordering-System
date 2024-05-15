@@ -57,7 +57,7 @@ public class Main {
                             scanner.nextLine();
                             System.out.println("What are the ingredients in it: ");
                             String[] ingredientsOfDessert = new String[]{scanner.nextLine()};
-                            Admin.addMealToMenu(dessertToAdd, priceOfDessert, ingredientsOfDessert);
+                            Admin.addDessertToMenu(dessertToAdd, priceOfDessert, ingredientsOfDessert);
                             break;
                         case 3:
                             System.out.println("What is the name of the meal would you like to remove from the menu (no spaces): ");
@@ -135,7 +135,9 @@ public class Main {
                             break;
 
                         case 9:
-                            Customer.pay();
+                            System.out.println("Would you like to add a tip? (eg: enter 15 for 15%)");
+                            double tipPercent = scanner.nextDouble();
+                            Customer.pay(tipPercent);
                             break;
                         case 10:
                             System.out.println("Exiting. Thank you!");
@@ -153,10 +155,3 @@ public class Main {
         }
     }
 }
-
-
-
-
-
-
-

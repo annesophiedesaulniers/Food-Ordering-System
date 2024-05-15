@@ -1,7 +1,5 @@
 package org.anne_sophie;
 
-import java.util.Arrays;
-
 /**
  * food you can get at the restaurant
  *
@@ -34,9 +32,12 @@ public abstract class Food {
     }
 }
 
-
+/**
+ * meal you can get at the restaurant
+ *
+ * @author Anne-Sophie Desaulniers
+ */
 class Meal extends Food {
-
     String[] ingredients;
     public Meal(String name, double price, String[] ingredients) {
         super(name, price);
@@ -56,7 +57,7 @@ class Meal extends Food {
     }
 
     /**
-     * display the information about the meal
+     * displays the information about the meal
      */
     @Override
     public void displayInfo() {
@@ -65,7 +66,7 @@ class Meal extends Food {
     }
 
     /**
-     * display the ingredients of the food item
+     * displays the ingredients of the meal
      */
     @Override
     public void displayIngredients() {
@@ -83,6 +84,11 @@ class Meal extends Food {
     }
 }
 
+/**
+ * dessert you can get at the restaurant
+ *
+ * @author Anne-Sophie Desaulniers
+ */
 class Dessert extends Food {
     String[] ingredients;
 
@@ -101,7 +107,6 @@ class Dessert extends Food {
         return super.getPrice();
     }
 
-
     @Override
     public String toString() {
         return "Dessert{" +
@@ -111,7 +116,7 @@ class Dessert extends Food {
     }
 
     /**
-     * display the information about the dessert
+     * displays the information about the dessert
      */
     @Override
     public void displayInfo() {
@@ -120,7 +125,7 @@ class Dessert extends Food {
     }
 
     /**
-     * display the ingredients of the dessert
+     * displays the ingredients of the dessert
      */
     @Override
     public void displayIngredients() {
@@ -130,4 +135,3 @@ class Dessert extends Food {
         }
     }
 }
-

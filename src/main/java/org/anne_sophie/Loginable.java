@@ -8,8 +8,3 @@ package org.anne_sophie;
 public interface Loginable {
      boolean login(String enteredUsername, String enteredPassword);
 }
-
-
-
-
-
