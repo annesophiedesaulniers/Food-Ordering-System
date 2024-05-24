@@ -38,7 +38,7 @@ public class Main {
                     int adminChoice = scanner.nextInt();
                     switch (adminChoice) {
                         case 1:
-                            System.out.println("What is the name of the meal would you like to add to the menu (no spaces): ");
+                            System.out.println("What is the name of the meal you would like to add to the menu (no spaces): ");
                             String mealToAdd = scanner.next();
                             scanner.nextLine();
                             System.out.println("How much do you want it to cost: ");
@@ -49,7 +49,7 @@ public class Main {
                             Admin.addMealToMenu(mealToAdd, priceOfMeal, ingredientsOfMeal);
                             break;
                         case 2:
-                            System.out.println("What  is the name of the dessert would you like to add to the menu (no spaces): ");
+                            System.out.println("What is the name of the dessert you would like to add to the menu (no spaces): ");
                             String dessertToAdd = scanner.next();
                             scanner.nextLine();
                             System.out.println("How much do you want it to cost: ");
